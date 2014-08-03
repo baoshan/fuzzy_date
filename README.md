@@ -92,25 +92,32 @@ When month bits are `0b1111`, day bits denote year span, otherwise:
 
 + Flag Bit A: Certainty
 
-  - `on`: the date is certain
-  - `off`: the date is uncertain, e.g.:
+  - `1`: the date is certain
+  - `0`: the date is uncertain, e.g.:
 
     * ? 1791
     * ? January 1791
 
 + Flag Bit B: Accuracy
 
-  - `on`: the date is accurate
-  - `off`: the date is approximate, e.g.:
+  - `1`: the date is accurate
+  - `0`: the date is approximate, e.g.:
 
     * circa 1791
     * circa January 1791
 
-+ Flag Bit C: Special flag. Each scenario could define its own meaning, e.g.:
++ Flag Bit C: Special flag. ICMD use flag bit C to denote `floruit`:
 
-  - ICMD use flag bit c to denote `floruit`: fl. 1234
+  - `1`: the fuzzy date is not a floruit date
+  - `0`: the fuzzy date is not a floruit date, e.g.:
 
-Always keep it `on` if you don't need it.
+    * fl. 1234
+
+An application can define its own usage for flag bit C. Keep it `1` when you
+don't need it.
+
+*Uncertain or approximate fuzzy dates go before certain and accurate fuzzy
+dates in ascending order. All flag bits are `1` by default*
 
 
 Helper Functions
@@ -144,8 +151,7 @@ Helper Functions
 
 + `day_of`: Return the day part of a fuzzy date (`null` when inapplicable).
 
-+ `year_diff`: Return the difference in year between two fuzzy dates (`null`
-  when inapplicable).
++ `year_diff`: Return the difference in year between two fuzzy dates (`null` when inapplicable).
 
 
 Obsolete
