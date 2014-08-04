@@ -2,8 +2,8 @@ Fuzzy Date
 ==========
 
 Most data types dealing with date are designed to represent a certain date with
-varying range (usually from 1 AD, 1753, 1900, or 1970) and accuracy (usually
-millisecond).
+varying ranges (usually starts from 1 AD, 1753, 1900, or 1970) and accuracies
+(usually from 100 nanoseconds to 1 day).
 
 Below examples are common seen in historical and general purpose writings:
 
@@ -24,8 +24,8 @@ do not consider `String` as an option since it's:
 
 **Fuzzy Date** proposes:
 
-  1. a 3 bytes binary format flexible in modeling date
-  2. a set of functions to deal with dates of above format
+  1. a 3-bytes binary format flexible in modeling date
+  2. a set of functions dealing with above format
 
 
 Binary Format
@@ -38,11 +38,11 @@ The binary format aims to be:
 
 3 bytes are used to store a fuzzy date:
 
-    [Y8] | [Y4][M4] | [D5][A][B][C]
+    [8Y] | [4Y][4M] | [5D][A][B][C]
 
 + 12 Year Bits:
 
-The 1st byte and top 4 bits of the 2nd byte are year bits. Total space of:
+The 1<sup>st</sup> byte and top 4 bits of the 2<sup>nd</sup> byte are year bits. Total space of:
 
     2 ^ 12 = 4096
 
@@ -51,7 +51,7 @@ The mapping between 12 year bits and the actual year is:
   - `0b000000000000` represents a fuzzy date without a year part, e.g.:
 
     * January (month only)
-    * January 1st (month and day only)
+    * January 1 (month and day only)
 
   - substract 1024 for all other combos, we get a year within:
 
@@ -133,7 +133,7 @@ Helper Functions
   - 1790s (a decade)
   - 1791-1974 (spanning a maximum of 32 years)
   - 212BC (before Christ)
-  - d-1-1 (January 1st, date without year part)
+  - d-1-1 (January 1, date without year part)
   - d-1 (January, date with only month part)
   - ?1791 (uncertain date)
   - c1791 (approximate date)
