@@ -2,7 +2,7 @@ Fuzzy Date
 ==========
 
 Most data types dealing with date are designed to represent a certain date with
-varying range (usually from 1, 1753, 1900, or 1970) and accuracy (usually
+varying range (usually from 1 AD, 1753, 1900, or 1970) and accuracy (usually
 millisecond).
 
 Below examples are common seen in historical and general purpose writings:
@@ -24,7 +24,7 @@ do not consider `String` as an option since it's:
 
 **Fuzzy Date** proposes:
 
-  1. a 3 bytes format flexible in modeling date
+  1. a 3 bytes binary format flexible in modeling date
   2. a set of functions to deal with dates of above format
 
 
