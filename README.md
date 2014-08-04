@@ -38,7 +38,7 @@ The binary format aims to be:
 
 3 bytes are used to store a fuzzy date:
 
-    [8Y] | [4Y][4M] | [5D][A][B][C]
+    [8Y]  [4Y][4M]  [5D][A][B][C]
 
 + 12 Year Bits:
 
