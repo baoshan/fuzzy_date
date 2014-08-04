@@ -15,8 +15,8 @@ Below examples are common seen in historical and general purpose writings:
   + circa 1791 (around a certain year)
   + ? January 16, 1078 (uncertain date)
 
-None of above can be stored or processed easily using existing data types. We
-do not consider `String` as an option since it's:
+None of above can be stored or processed using existing data types. We do not
+consider `String` as an option since it's:
 
   1. storage inefficient
   2. hard to sort
