@@ -1,8 +1,8 @@
 Fuzzy Date
 ==========
 
-Most data types dealing with date are designed to represent a (certain) date
-with varying range (usually from 1, 1753, 1900, or 1970) and accuracy (usually
+Most data types dealing with date are designed to represent a certain date with
+varying range (usually from 1, 1753, 1900, or 1970) and accuracy (usually
 millisecond).
 
 Below examples are common seen in historical and general purpose writings:
@@ -48,15 +48,15 @@ The 1st byte and top 4 bits of the 2nd byte are year bits. Total space of:
 
 The mapping between 12 year bits and the actual year is:
 
-  - all `0` (`0b000000000000`) represents a fuzzy date without year, e.g.:
+  - `0b000000000000` represents a fuzzy date without a year part, e.g.:
 
     * January (month only)
     * January 1st (month and day only)
 
   - substract 1024 for all other combos, we get a year within:
 
-    * 1023 BC (`0b000000000001` - 1024) and
-    * 3071 AD (`0b111111111111` - 1024)
+    * 1024 BC (`0b000000000001` - 1024 = -1023) and
+    * 3071 AD (`0b111111111111` - 1024 =  3071)
 
 + 4 Month Bits:
 
@@ -116,8 +116,8 @@ When month bits are `0b1111`, day bits denote year span, otherwise:
 An application can define its own usage for flag bit C. Keep it `1` when you
 don't need it.
 
-*Uncertain or approximate fuzzy dates go before certain and accurate fuzzy
-dates in ascending order. All flag bits are `1` by default*
+*Uncertain/approximate dates go before certain/accurate dates in
+ascending order (default for print). Thus, all flag bits are `1` by default*
 
 
 Helper Functions
@@ -139,24 +139,29 @@ Helper Functions
   - c1791 (approximate date)
   - f1791 (Special flag)
 
-+ `short_text_of`: Format a 3-byte binary into a short text. `fuzzy_date_of` and `short_text_of` are not mutually inverse functions.
++ `short_text_of`: Format a 3-byte binary into its short text representation.
+  `fuzzy_date_of` and `short_text_of` are mutually inverse functions.
 
-+ `readable`: Format a 3-byte binary into its readable version, e.g.:
++ `readable`: Format a 3-byte binary into its readable (longer) version, e.g.:
 
   - ? circa January 212 BC
 
-+ `year_of`: Return the year part of a fuzzy date (`null` when inapplicable).
-
-+ `month_of`: Return the month part of a fuzzy date (`null` when inapplicable).
-
-+ `day_of`: Return the day part of a fuzzy date (`null` when inapplicable).
-
-+ `year_diff`: Return the difference in year between two fuzzy dates (`null` when inapplicable).
++ `year_of`   : Return the year  part of a fuzzy date, `null` when inapplicable.
++ `month_of`  : Return the month part of a fuzzy date, `null` when inapplicable.
++ `day_of`    : Return the day   part of a fuzzy date, `null` when inapplicable.
++ `year_diff` : Return the difference in years between two fuzzy dates, `null`
+  when inapplicable.
 
 
 Obsolete
 ========
 
 + `fuzzy_date_2_markup`: Return markuped date (for navigation use):
-
 + `fuzzy_date_2_julian_markup`: Return markuped Julian date (for navigation use).
+
+
+Data Polish
+===========
+
+1. 1 BC before 1 AD, no 0 AD.
+2. Year span 1 to 32, not 0 to 31.
