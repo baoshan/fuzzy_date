@@ -117,7 +117,7 @@ An application can define its own usage for flag bit C. Keep it `1` when you
 don't need it.
 
 *Uncertain/approximate dates go before certain/accurate dates in
-ascending order (default for print). Thus, all flag bits are `1` by default*
+ascending order (default for print). Thus, all flag bits are `1` by default.*
 
 
 Helper Functions
