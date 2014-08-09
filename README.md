@@ -20,8 +20,8 @@ A 3-byte data type for historical and general purpose date:
 
 and more.
 
-Fuzzy Date
-==========
+The Long Version
+================
 
 Most data types dealing with date are designed to represent a certain date with
 varying ranges (usually starts from 1 AD, 1753, 1900, or 1970) and accuracies
