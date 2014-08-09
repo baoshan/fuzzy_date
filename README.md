@@ -24,7 +24,7 @@ The Long Version
 ================
 
 Most data types dealing with date are designed to represent a certain date with
-varying ranges (usually starts from 1 AD, 1753, 1900, or 1970) and accuracies
+varying ranges (usually starts from 1, 1753, 1900, or 1970) and accuracies
 (usually from 100 nanoseconds to 1 day).
 
 Below examples are common seen in historical and general purpose writings:
@@ -46,7 +46,7 @@ consider `String` as an option since it's:
 
 **Fuzzy Date** proposes:
 
-  1. a 3-bytes binary format flexible in modeling date
+  1. a 3-byte data type flexible in modeling date
   2. a set of functions dealing with above format
 
 
