@@ -10,7 +10,7 @@ A 3-byte data type for historical and general purpose date:
 | 1024 BC            | `1024BC`     |
 | ? 24 BC            | `?24BC`      |
 | 0s BC              | `0sBC`       |
-| circa 9 BC         | `c.9BC`      |
+| circa 9 BC - 12 AD | `c.9BC+20`   |
 | 0s                 | `0s`         |
 | 2010s              | `2010s`      |
 | January 2014       | `2014-1`     |
