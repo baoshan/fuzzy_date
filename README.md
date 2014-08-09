@@ -1,26 +1,23 @@
 TL;DR
 =====
 
-Fuzzy Date is a 3-byte data type help you store and edit:
+A 3-byte data type for historical and general purpose date.
 
-|  Fuzzy Date        |  Edit String  |
-|--------------------|---------------|
-| January            | d-1           |
-| January 1          | d-1-1         |
-| 1024 BC            | 1024BC        |
-| January 1, 1024 BC | 1024BC-1-1    |
-| 0s BC              | 0s BC         |
-| 0s                 | 0s            |
-| 2010s              | 2010s         |
-| January 1, 2014    | 2014-1-1      |
-| 2014 - 2016        | 2014+2        |
-| 2010s - 2020s      | 2010s+20      |
-| circa 2014         | c.2014        |
-| ? 24 BC            | ? 24 BC       |
-| and more           |t
-
-
-
+| Fuzzy Date         | Short String |
+|--------------------|--------------|
+| January            | `d-1`        |
+| January 1          | `d-1-1`      |
+| 1024 BC            | `1024BC`     |
+| 0s BC              | `0sBC`       |
+| 0s                 | `0s`         |
+| 2010s              | `2010s`      |
+| January 2014       | `2014-1`     |
+| January 1, 2014    | `2014-1-1`   |
+| 2014 - 2016        | `2014+2`     |
+| 2010s - 2020s      | `2010s+20`   |
+| circa 2014         | `c.2014`     |
+| ? 24 BC            | `?24BC`      |
+| and more           |              |
 
 Fuzzy Date
 ==========
