@@ -1,3 +1,27 @@
+TL;DR
+=====
+
+Fuzzy Date is a 3-byte data type help you store and edit:
+
+|  Fuzzy Date        |  Edit String  |
+|--------------------|---------------|
+| January            | d-1           |
+| January 1          | d-1-1         |
+| 1024 BC            | 1024BC        |
+| January 1, 1024 BC | 1024BC-1-1    |
+| 0s BC              | 0s BC         |
+| 0s                 | 0s            |
+| 2010s              | 2010s         |
+| January 1, 2014    | 2014-1-1      |
+| 2014 - 2016        | 2014+2        |
+| 2010s - 2020s      | 2010s+20      |
+| circa 2014         | c.2014        |
+| ? 24 BC            | ? 24 BC       |
+| and more           |t
+
+
+
+
 Fuzzy Date
 ==========
 
@@ -50,8 +74,9 @@ The mapping between 12 year bits and the actual year is:
 
   - `0b000000000000` represents a fuzzy date without a year part, e.g.:
 
-    * January (month only)
-    * January 1 (month and day only)
+    * February (month only)
+    * February 1 (month and day only)
+    * February 29 (all possible days of a month)
 
   - substract 1024 for all other combos, we get a year within:
 
@@ -60,9 +85,15 @@ The mapping between 12 year bits and the actual year is:
 
 + 4 Month Bits:
 
-  - `0b0000` represents a decade, e.g.:
+  - `0b0000` represents a decade (day bits should be `0b00000`) or a fuzzy date
+    spanning multi-decades, e.g.:
 
-    * 1790s
+    * 1860s
+    * 1860s - 1870s
+
+    For BC decades, the year is the start year of the decades, e.g.:
+
+    * The year bits for 10s BC are same as 19 BC (-18).
 
   - `0b0001` represents a fuzzy date with only a year part (day bits should be
     `0b00000`), e.g.:
@@ -73,7 +104,7 @@ The mapping between 12 year bits and the actual year is:
 
   - `0b1111` represents a fuzzy date spanning multiple years, e.g.:
 
-    * 1791 - 1793 (day bits denote year span, from 1 to 32)
+    * 1791+2 (day bits denote year span, from 1 to 32)
 
   - substract 1 for all other combos, we get a month within:
 
@@ -90,7 +121,7 @@ When month bits are `0b1111`, day bits denote year span, otherwise:
 
   - `0b00001` to `0b11111` represents day 1 to day 31 accordingly.
 
-+ Flag Bit A: Certainty
++ Flag Bit A: Certainty.
 
   - `1`: the date is certain
   - `0`: the date is uncertain, e.g.:
@@ -98,7 +129,7 @@ When month bits are `0b1111`, day bits denote year span, otherwise:
     * ? 1791
     * ? January 1791
 
-+ Flag Bit B: Accuracy
++ Flag Bit B: Accuracy.
 
   - `1`: the date is accurate
   - `0`: the date is approximate, e.g.:
@@ -123,15 +154,17 @@ ascending order (default for print). Thus, all flag bits are `1` by default.*
 Helper Functions
 ================
 
-+ `is_valid`: Check if a 3-bytes binary is a valid fuzzy date or not.
++ `is_valid_binary_fuzzy_date`: Check if a binary is a valid fuzzy date or not.
 
-+ `fuzzy_date_of`: Parse below short texts into a 3-bytes binary
++ `is_valid_string_fuzzy_date`: Check if a string is a valid fuzzy date or not.
+
++ `binary_fuzzy_date_from_string`: Parse below short texts into a 3-bytes binary:
 
   - 1791-2-11 (normal date)
   - 1791-2 (date without day part)
   - 1791 (date with only year part)
   - 1790s (a decade)
-  - 1791-1974 (spanning a maximum of 32 years)
+  - 1791+3 (spanning a maximum of 32 years)
   - 212BC (before Christ)
   - d-1-1 (January 1, date without year part)
   - d-1 (January, date with only month part)
@@ -139,8 +172,8 @@ Helper Functions
   - c1791 (approximate date)
   - f1791 (Special flag)
 
-+ `short_text_of`: Format a 3-byte binary into its short text representation.
-  `fuzzy_date_of` and `short_text_of` are mutually inverse functions.
++ `fuzzy_date_string_from_binary`: Format a 3-byte binary into its short text representation.
+  `fuzzy_date_from_short_text` and `short_text_from_fuzzy_date` are mutually inverse functions.
 
 + `readable`: Format a 3-byte binary into its readable (longer) version, e.g.:
 
