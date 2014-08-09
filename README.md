@@ -1,23 +1,24 @@
 TL;DR
 =====
 
-A 3-byte data type for historical and general purpose date.
+A 3-byte data type for historical and general purpose date:
 
 | Fuzzy Date         | Short String |
 |--------------------|--------------|
 | January            | `d-1`        |
 | January 1          | `d-1-1`      |
 | 1024 BC            | `1024BC`     |
+| ? 24 BC            | `?24BC`      |
 | 0s BC              | `0sBC`       |
+| circa 9 BC         | `c.9BC`      |
 | 0s                 | `0s`         |
 | 2010s              | `2010s`      |
 | January 2014       | `2014-1`     |
 | January 1, 2014    | `2014-1-1`   |
 | 2014 - 2016        | `2014+2`     |
 | 2010s - 2020s      | `2010s+20`   |
-| circa 2014         | `c.2014`     |
-| ? 24 BC            | `?24BC`      |
-| and more           |              |
+
+and more.
 
 Fuzzy Date
 ==========
