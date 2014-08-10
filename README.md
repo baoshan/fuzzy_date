@@ -1,7 +1,7 @@
 TL;DR
 =====
 
-A **3-byte** data type for historical and general purpose date handling:
+A **3-byte** data type for historical and general purpose date modeling:
 
 | Fuzzy Date         | Short String |
 |--------------------|--------------|
@@ -165,30 +165,16 @@ ascending order (default for print). Thus, all flag bits are `1` by default.*
 Helper Functions
 ================
 
-+ `is_valid_binary_fuzzy_date`: Check if a binary is a valid fuzzy date or not.
++ `fuzzy_date_is_valid_binary`: Check if a binary is a valid fuzzy date binary.
++ `fuzzy_date_binary_from_string`: Parse a short string into a fuzzy date binary.
++ `fuzzy_date_string_from_binary`: Parse a fuzzy date binary into a short string.
++ `fuzzy_date_readable_string_from_binary`: Parse a fuzzy date binary into its readable (en-us) version.
 
-+ `is_valid_string_fuzzy_date`: Check if a string is a valid fuzzy date or not.
+`fuzzy_date_binary_from_string` and `fuzzy_date_string_from_binary` are mutually inverse functions.
 
-+ `binary_fuzzy_date_from_string`: Parse below short texts into a 3-bytes binary:
 
-  - 1791-2-11 (normal date)
-  - 1791-2 (date without day part)
-  - 1791 (date with only year part)
-  - 1790s (a decade)
-  - 1791+3 (spanning a maximum of 32 years)
-  - 212BC (before Christ)
-  - d-1-1 (January 1, date without year part)
-  - d-1 (January, date with only month part)
-  - ?1791 (uncertain date)
-  - c1791 (approximate date)
-  - f1791 (Special flag)
-
-+ `fuzzy_date_string_from_binary`: Format a 3-byte binary into its short text representation.
-  `fuzzy_date_from_short_text` and `short_text_from_fuzzy_date` are mutually inverse functions.
-
-+ `readable`: Format a 3-byte binary into its readable (longer) version, e.g.:
-
-  - ? circa January 212 BC
+More Functions
+==============
 
 + `year_of`   : Return the year  part of a fuzzy date, `null` when inapplicable.
 + `month_of`  : Return the month part of a fuzzy date, `null` when inapplicable.
