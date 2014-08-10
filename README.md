@@ -3,7 +3,7 @@ TL;DR
 
 A **3-bytes** data type for historical and general purpose date modeling:
 
-| Fuzzy Date         | Short String |
+| Fuzzy Date         | How to Edit  |
 |--------------------|--------------|
 | December           | `d-12`       |
 | December 25        | `d-12-25`    |
