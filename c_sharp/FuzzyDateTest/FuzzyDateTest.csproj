@@ -6,8 +6,8 @@
     <ProjectGuid>{868A9BC9-ADFA-475D-861D-C18BC00B70B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ICMD_DB_CLR_TEST</RootNamespace>
-    <AssemblyName>ICMD_DB_CLR_TEST</AssemblyName>
+    <RootNamespace>FuzzyDateTest</RootNamespace>
+    <AssemblyName>FuzzyDateTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,9 +59,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\fuzzy_date\fuzzy_date.sqlproj">
+    <ProjectReference Include="..\FuzzyDate\FuzzyDate.sqlproj">
       <Project>{d34310ae-ebb7-4d9c-9ace-85c42fc446a0}</Project>
-      <Name>fuzzy_date</Name>
+      <Name>FuzzyDate</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

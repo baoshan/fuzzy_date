@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>fuzzy_date</Name>
+    <Name>FuzzyDate</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{d34310ae-ebb7-4d9c-9ace-85c42fc446a0}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>ICMD_DB_CLR</RootNamespace>
-    <AssemblyName>ICMD_DB_CLR</AssemblyName>
+    <RootNamespace>FuzzyDate</RootNamespace>
+    <AssemblyName>FuzzyDate</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
