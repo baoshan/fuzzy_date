@@ -165,12 +165,12 @@ ascending order (default for print). Thus, all flag bits are `1` by default.*
 Helper Functions
 ================
 
-+ `fuzzy_date_is_valid_binary`: Check if a binary is a valid fuzzy date binary.
-+ `fuzzy_date_binary_from_string`: Parse a short string into a fuzzy date binary.
-+ `fuzzy_date_string_from_binary`: Parse a fuzzy date binary into a short string.
-+ `fuzzy_date_readable_string_from_binary`: Parse a fuzzy date binary into its readable (en-us) version.
++ `is_valid_binary`: Check if a binary is a valid fuzzy date binary.
++ `binary_from_string`: Parse a short string into a fuzzy date binary.
++ `string_from_binary`: Parse a fuzzy date binary into a short string.
++ `readable_string_from_binary`: Parse a fuzzy date binary into its readable (en-us) version.
 
-`fuzzy_date_binary_from_string` and `fuzzy_date_string_from_binary` are mutually inverse functions.
+`binary_from_string` and `string_from_binary` are mutually inverse functions.
 
 
 More Functions
