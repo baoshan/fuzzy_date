@@ -3,15 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ICMD.DB.CLR", "ICMD.DB.CLR\ICMD.DB.CLR.sqlproj", "{D34310AE-EBB7-4D9C-9ACE-85C42FC446A0}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "fuzzy_date", "fuzzy_date\fuzzy_date.sqlproj", "{D34310AE-EBB7-4D9C-9ACE-85C42FC446A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICMD.DB.CLR.Test", "ICMD.DB.CLR.Test\ICMD.DB.CLR.Test.csproj", "{868A9BC9-ADFA-475D-861D-C18BC00B70B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuzzy_date_test", "fuzzy_date_test\fuzzy_date_test.csproj", "{868A9BC9-ADFA-475D-861D-C18BC00B70B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-		Description = SQL Server CLR Objects for ICMD
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D34310AE-EBB7-4D9C-9ACE-85C42FC446A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

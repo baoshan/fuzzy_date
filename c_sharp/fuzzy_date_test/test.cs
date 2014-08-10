@@ -1,19 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.SqlTypes;
-using ICMD.DB.CLR;
 
-namespace ICMD.DB.CLR.Test
+[TestClass]
+public partial class FuzzyDateTest
 {
-  [TestClass]
-  public partial class FuzzyDateTest
+  /// <summary>
+  /// Negative examples which must fail.
+  /// </summary>
+  [TestMethod]
+  public void InvalidFuzzyDateStrings()
   {
-    /// <summary>
-    /// Negative examples which must fail.
-    /// </summary>
-    [TestMethod]
-    public void InvalidFuzzyDateStrings()
-    {
-      string[] negative_examples = {
+    string[] negative_examples = {
         "d-0",
         "d-13",
         "d-12-32",
@@ -33,19 +30,19 @@ namespace ICMD.DB.CLR.Test
         "2020s+1",
         "2020s+110"
       };
-      foreach (var negative_example in negative_examples)
-      {
-        Assert.IsTrue(UDFs.fuzzy_date_binary_from_string(negative_example).IsNull);
-      }
-    }
-
-    /// <summary>
-    /// Positive examples which should pass. Examples are given in ascending order.
-    /// </summary>
-    [TestMethod]
-    public void ValidFuzzyDateStrings()
+    foreach (var negative_example in negative_examples)
     {
-      string[,] positive_examples = { 
+      Assert.IsTrue(FuzzyDate.binary_from_string(negative_example).IsNull);
+    }
+  }
+
+  /// <summary>
+  /// Positive examples which should pass. Examples are given in ascending order.
+  /// </summary>
+  [TestMethod]
+  public void ValidFuzzyDateStrings()
+  {
+    string[,] positive_examples = { 
         {"d-12", "December"},
         {"d-12-25","December 25"},
         {"1024BC", "1024 BC"},
@@ -76,16 +73,15 @@ namespace ICMD.DB.CLR.Test
         {"2020s+20", "2020s – 2040s"},
         {"3071", "3071"}
       };
-      var prev_valid_binary = SqlBinary.Null;
-      for (var i = 0; i < positive_examples.GetLength(0); i++ )
-      {
-        var valid_binary = UDFs.fuzzy_date_binary_from_string(positive_examples[i, 0]);
-        Assert.IsFalse(valid_binary.IsNull);
-        Assert.AreEqual(positive_examples[i, 0], UDFs.fuzzy_date_string_from_binary(valid_binary));
-        Assert.AreEqual(positive_examples[i, 1], UDFs.fuzzy_date_readable_string_from_binary(valid_binary));
-        if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
-        prev_valid_binary = valid_binary;
-      }
+    var prev_valid_binary = SqlBinary.Null;
+    for (var i = 0; i < positive_examples.GetLength(0); i++)
+    {
+      var valid_binary = FuzzyDate.binary_from_string(positive_examples[i, 0]);
+      Assert.IsFalse(valid_binary.IsNull);
+      Assert.AreEqual(positive_examples[i, 0], FuzzyDate.string_from_binary(valid_binary));
+      Assert.AreEqual(positive_examples[i, 1], FuzzyDate.readable_string_from_binary(valid_binary));
+      if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
+      prev_valid_binary = valid_binary;
     }
   }
 }

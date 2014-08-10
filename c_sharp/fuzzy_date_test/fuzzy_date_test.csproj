@@ -53,15 +53,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="fuzzy_date\fuzzy_date_test.cs" />
+    <Compile Include="test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ICMD.DB.CLR\ICMD.DB.CLR.sqlproj">
+    <ProjectReference Include="..\fuzzy_date\fuzzy_date.sqlproj">
       <Project>{d34310ae-ebb7-4d9c-9ace-85c42fc446a0}</Project>
-      <Name>ICMD.DB.CLR</Name>
+      <Name>fuzzy_date</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
