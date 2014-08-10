@@ -7,7 +7,7 @@ public partial class FuzzyDate
   /// Parse a fuzzy date binary into its readable (en-us) version.
   /// </summary>
   [SqlFunction(IsDeterministic = true, IsPrecise = true)]
-  public static SqlString readable_string_from_binary(SqlBinary sql_binary)
+  public static SqlString ReadableStringFromBinary(SqlBinary sql_binary)
   {
     // NULL in NULL out.
     if (sql_binary.IsNull) { return SqlString.Null; }

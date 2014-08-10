@@ -9,7 +9,7 @@ public partial class FuzzyDate
   /// *This method does NOT check if a BC date is valid.*
   /// </summary>
   [SqlFunction(IsDeterministic = true, IsPrecise = true)]
-  public static SqlBoolean is_valid_binary(SqlBinary sql_binary)
+  public static SqlBoolean IsValidBinary(SqlBinary sql_binary)
   {
     // NULL in NULL out.
     if (sql_binary.IsNull) { return SqlBoolean.Null; }

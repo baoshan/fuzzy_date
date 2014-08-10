@@ -65,11 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="binary_from_string.cs" />
-    <Compile Include="is_valid_binary.cs" />
+    <Compile Include="BinaryFromString.cs" />
+    <Compile Include="IsValidBinary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="readable_string_from_binary.cs" />
-    <Compile Include="string_from_binary.cs" />
+    <Compile Include="ReadableStringFromBinary.cs" />
+    <Compile Include="StringFromBinary.cs" />
   </ItemGroup>
 </Project>

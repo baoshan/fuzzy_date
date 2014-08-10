@@ -7,7 +7,7 @@ public partial class FuzzyDate
   /// Parse a fuzzy date binary into a short string.
   /// </summary>
   [SqlFunction(IsDeterministic = true, IsPrecise = true)]
-  public static SqlString string_from_binary(SqlBinary sql_binary)
+  public static SqlString StringFromBinary(SqlBinary sql_binary)
   {
     // NULL in NULL out.
     if (sql_binary.IsNull) { return SqlString.Null; }

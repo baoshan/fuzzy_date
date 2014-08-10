@@ -32,7 +32,7 @@ public partial class FuzzyDateTest
       };
     foreach (var negative_example in negative_examples)
     {
-      Assert.IsTrue(FuzzyDate.binary_from_string(negative_example).IsNull);
+      Assert.IsTrue(FuzzyDate.BinaryFromString(negative_example).IsNull);
     }
   }
 
@@ -76,10 +76,10 @@ public partial class FuzzyDateTest
     var prev_valid_binary = SqlBinary.Null;
     for (var i = 0; i < positive_examples.GetLength(0); i++)
     {
-      var valid_binary = FuzzyDate.binary_from_string(positive_examples[i, 0]);
+      var valid_binary = FuzzyDate.BinaryFromString(positive_examples[i, 0]);
       Assert.IsFalse(valid_binary.IsNull);
-      Assert.AreEqual(positive_examples[i, 0], FuzzyDate.string_from_binary(valid_binary));
-      Assert.AreEqual(positive_examples[i, 1], FuzzyDate.readable_string_from_binary(valid_binary));
+      Assert.AreEqual(positive_examples[i, 0], FuzzyDate.StringFromBinary(valid_binary));
+      Assert.AreEqual(positive_examples[i, 1], FuzzyDate.ReadableStringFromBinary(valid_binary));
       if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
       prev_valid_binary = valid_binary;
     }
