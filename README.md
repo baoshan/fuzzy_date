@@ -1,22 +1,35 @@
 TL;DR
 =====
 
-A 3-byte data type for historical and general purpose date:
+A **3-byte** data type for historical and general purpose dates handling:
 
 | Fuzzy Date         | Short String |
 |--------------------|--------------|
-| January            | `d-1`        |
-| January 1          | `d-1-1`      |
+| December           | `d-12`       |
+| December 25        | `d-12-25`    |
 | 1024 BC            | `1024BC`     |
+| 212 BC             | `212BC`      |
+| August 212 BC      | `212BC-8`    |
+| August 6, 212 BC   | `212BC-8-6`  |
 | ? 24 BC            | `?24BC`      |
+| ? c. 20 BC         | `?c.20BC`    |
+| 10s BC - 0s BC     | `10sBC+10`   |
+| 10s BC - 0s AD     | `10sBC+20`   |
 | 0s BC              | `0sBC`       |
-| circa 9 BC - 12 AD | `c.9BC+20`   |
+| 0s BC - 0s AD      | `0sBC+10`    |
+| c. 9 BC - 7 BC     | `c.9BC+2`    |
+| c. 9 BC - 12 AD    | `c.9BC+20`   |
+| 1 BC               | `1BC`        |
+| 1 BC - 1 AD        | `1BC+1`      |
 | 0s                 | `0s`         |
+| 1                  | `1`          |
 | 2010s              | `2010s`      |
+| 2010s - 2020s      | `2010s+10`   |
+| 2014               | `2014`       |
 | January 2014       | `2014-1`     |
 | January 1, 2014    | `2014-1-1`   |
-| 2014 - 2016        | `2014+2`     |
-| 2010s - 2020s      | `2010s+20`   |
+| 2014 - 2015        | `2014+1`     |
+| 3071               | `3071`       |
 
 and more.
 
