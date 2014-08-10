@@ -1,7 +1,7 @@
 TL;DR
 =====
 
-A **3-byte** data type for historical and general purpose dates handling:
+A **3-byte** data type for historical and general purpose date handling:
 
 | Fuzzy Date         | Short String |
 |--------------------|--------------|
