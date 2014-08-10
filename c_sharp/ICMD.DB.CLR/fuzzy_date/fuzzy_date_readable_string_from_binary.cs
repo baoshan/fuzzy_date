@@ -22,13 +22,13 @@ namespace ICMD.DB.CLR
 
       // Separate the year, month, and day as it's a regular date.
       var year = (bytes[0] << 4 | bytes[1] >> 4) - 1024;
-      var month_index = (bytes[1] & 0x0F) - 2;
+      var month_index = (bytes[1] & 0x0F) - 1;
       var day = bytes[2] >> 3;
 
       // When the binary does not have a year part:
       if (year == -1024)
       {
-        result = months[month_index];
+        result = date_time_format_info.GetMonthName(month_index);
         if (day > 0) { result += " " + day; }
       }
 
@@ -42,7 +42,7 @@ namespace ICMD.DB.CLR
         switch (month_index)
         {
           // A Decade.
-          case 0x00 - 2:
+          case 0x00 - 1:
 
             // Valid BC decades start from:
             //   * -18 (10s BC starts from 19 BC)
@@ -66,12 +66,12 @@ namespace ICMD.DB.CLR
             break;
 
           // A fuzzy date with only year part.
-          case 0x01 - 2:
+          case 0x01 - 1:
             result = before_christ ? (1 - year) + " BC" : year.ToString();
             break;
 
           // A fuzzy date spanning multi-years.
-          case 0x0F - 2:
+          case 0x0F - 1:
             result = (before_christ ? 1 - year + " BC" : year.ToString()) + " ¨C ";
             var end_year = year + day + 1;
             var end_year_before_christ = end_year < 1;
@@ -80,7 +80,7 @@ namespace ICMD.DB.CLR
 
           // A fuzzy date with a month part.
           default:
-            result = months[month_index] +
+            result = date_time_format_info.GetMonthName(month_index) +
               (day == 0 ? " " : " " + day + ", ") +
               (before_christ ? (1 - year) + " BC" : year.ToString());
             break;
@@ -100,21 +100,7 @@ namespace ICMD.DB.CLR
       return new SqlString(result);
     }
 
-    // Localized months.
-    static readonly string[] months =
-    { 
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    };
+    // English month names.
+    static readonly System.Globalization.DateTimeFormatInfo date_time_format_info = new System.Globalization.DateTimeFormatInfo();
   }
 }
