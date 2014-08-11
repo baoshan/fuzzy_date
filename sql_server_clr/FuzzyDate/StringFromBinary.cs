@@ -1,10 +1,6 @@
 using Microsoft.SqlServer.Server;
 using System.Data.SqlTypes;
 
-
-
-
-
 public partial class FuzzyDate
 {
   /// <summary>

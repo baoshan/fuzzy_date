@@ -103,7 +103,7 @@ public partial class FuzzyDate
       // Prepare output binary.
       var sql_binary = new SqlBinary(bytes);
 
-      // Ensure the output a valid fuzzy date binary.
+      // Ensure the output is a valid fuzzy date binary.
       if (!IsValidBinary(sql_binary)) { return SqlBinary.Null; }
 
       // Ensure the output is the same as input.
