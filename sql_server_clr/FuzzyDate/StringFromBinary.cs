@@ -1,6 +1,10 @@
 using Microsoft.SqlServer.Server;
 using System.Data.SqlTypes;
 
+
+
+
+
 public partial class FuzzyDate
 {
   /// <summary>
@@ -18,17 +22,15 @@ public partial class FuzzyDate
     // The string to be populated.
     string result;
 
-    // Restore the year.
+    // Separate the year, month, and day as it's a regular date.
     var year = (bytes[0] << 4 | bytes[1] >> 4) - 1024;
     var month = (bytes[1] & 0x0F) - 1;
-    var day = (bytes[2] >> 3);
+    var day = bytes[2] >> 3;
 
     // When the binary does not have a year part:
-    // 1. Calculate the month bits.
-    // 2. Calculate the day bits.
     if (year == -1024)
     {
-      result = "D-" + ((bytes[1] & 0x0F) - 1);
+      result = "D-" + month;
       if (day > 0) { result += "-" + day; }
     }
 
@@ -39,16 +41,16 @@ public partial class FuzzyDate
       var before_christ = year < 1;
 
       // Flow control according to month bits:
-      switch (bytes[1] & 0x0F)
+      switch (month)
       {
         // A Decade.
-        case 0x00:
+        case 0x00 - 1:
 
           // Valid BC decades start from:
           //   * -18 (10s BC starts from 19 BC)
           //   * -8 (0s BC starts from 9 BC)
           //   * ...
-          if (before_christ) { result = (-8 - year) + "sBC"; }
+          if (before_christ) { result = -8 - year + "sBC"; }
 
           // Valid AD decades start from:
           //   * 1 (0s BC starts from 1 AD)
@@ -56,18 +58,20 @@ public partial class FuzzyDate
           //   * ...
           else { result = (year == 1 ? 0 : year) + "s"; }
 
-          // For fuzzy decades spanning multiple years, 1 day bit equals 10 years.
-          var span = bytes[2] >> 3;
-          if (span > 0) { result += "+" + 10 * span; }
+          // A fuzzy date spanning multiple decades.
+          if (day > 0)
+          {
+            result += "+" + 10 * day;
+          }
           break;
 
         // A fuzzy date with only year part.
-        case 0x01:
+        case 0x01 - 1:
           result = (before_christ ? 1 - year + "BC" : year.ToString());
           break;
 
         // A fuzzy date spanning multi-years.
-        case 0x0F:
+        case 0x0F - 1:
           result = (before_christ ? 1 - year + "BC" : year.ToString()) + "+" + (day + 1);
           break;
 

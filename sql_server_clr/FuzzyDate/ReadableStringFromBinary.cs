@@ -1,10 +1,14 @@
 using Microsoft.SqlServer.Server;
 using System.Data.SqlTypes;
+using System.Globalization;
 
 public partial class FuzzyDate
 {
+  // English month names.
+  static readonly System.Globalization.DateTimeFormatInfo date_time_format_info = new DateTimeFormatInfo();
+
   /// <summary>
-  /// Parse a fuzzy date binary into its readable (en-us) version.
+  /// Parse a fuzzy date binary into a readable (en-us) string.
   /// </summary>
   [SqlFunction(IsDeterministic = true, IsPrecise = true)]
   public static SqlString ReadableStringFromBinary(SqlBinary sql_binary)
@@ -20,13 +24,13 @@ public partial class FuzzyDate
 
     // Separate the year, month, and day as it's a regular date.
     var year = (bytes[0] << 4 | bytes[1] >> 4) - 1024;
-    var month_index = (bytes[1] & 0x0F) - 1;
+    var month = (bytes[1] & 0x0F) - 1;
     var day = bytes[2] >> 3;
 
     // When the binary does not have a year part:
     if (year == -1024)
     {
-      result = date_time_format_info.GetMonthName(month_index);
+      result = date_time_format_info.GetMonthName(month);
       if (day > 0) { result += " " + day; }
     }
 
@@ -37,7 +41,7 @@ public partial class FuzzyDate
       var before_christ = year < 1;
 
       // Flow control according to month bits:
-      switch (month_index)
+      switch (month)
       {
         // A Decade.
         case 0x00 - 1:
@@ -78,7 +82,7 @@ public partial class FuzzyDate
 
         // A fuzzy date with a month part.
         default:
-          result = date_time_format_info.GetMonthName(month_index) +
+          result = date_time_format_info.GetMonthName(month) +
             (day == 0 ? " " : " " + day + ", ") +
             (before_christ ? (1 - year) + " BC" : year.ToString());
           break;
@@ -97,7 +101,4 @@ public partial class FuzzyDate
     // Return the populated string.
     return new SqlString(result);
   }
-
-  // English month names.
-  static readonly System.Globalization.DateTimeFormatInfo date_time_format_info = new System.Globalization.DateTimeFormatInfo();
 }

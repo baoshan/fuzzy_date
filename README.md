@@ -168,7 +168,7 @@ Helper Functions
 + `is_valid_binary`: Check if a binary is a valid fuzzy date binary.
 + `binary_from_string`: Parse a short string into a fuzzy date binary.
 + `string_from_binary`: Parse a fuzzy date binary into a short string.
-+ `readable_string_from_binary`: Parse a fuzzy date binary into its readable (en-us) version.
++ `readable_string_from_binary`: Parse a fuzzy date binary into a readable (en-us) string.
 
 `binary_from_string` and `string_from_binary` are mutually inverse functions.
 
