@@ -2,6 +2,7 @@
 *.swp
 *.suo
 *.user
+*.dbmdl
 bin
 obj
 TestResults
