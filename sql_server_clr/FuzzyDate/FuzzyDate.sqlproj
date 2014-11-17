@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BinaryFromString.cs" />
     <Compile Include="IsValidBinary.cs" />
+    <Compile Include="YearStringFromBinary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ReadableStringFromBinary.cs" />
