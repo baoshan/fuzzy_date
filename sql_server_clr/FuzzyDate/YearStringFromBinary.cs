@@ -59,7 +59,7 @@ public partial class FuzzyDate
           {
             var end_decade_year = year + 10 * day;
             var end_decade_before_christ = end_decade_year < 1;
-            result += " ¨C " + (end_decade_before_christ ? -8 - end_decade_year + "s BC" : before_christ ? end_decade_year - 2 + "s AD" : end_decade_year + "s");
+            result += " â€“ " + (end_decade_before_christ ? -8 - end_decade_year + "s BC" : before_christ ? end_decade_year - 2 + "s AD" : end_decade_year + "s");
           }
           break;
 
@@ -70,7 +70,7 @@ public partial class FuzzyDate
 
         // A fuzzy date spanning multi-years.
         case 0x0F - 1:
-          result = (before_christ ? 1 - year + " BC" : year.ToString()) + " ¨C ";
+          result = (before_christ ? 1 - year + " BC" : year.ToString()) + " â€“ ";
           var end_year = year + day + 1;
           var end_year_before_christ = end_year < 1;
           result += end_year_before_christ ? 1 - end_year + " BC" : before_christ ? end_year + " AD" : end_year.ToString();
