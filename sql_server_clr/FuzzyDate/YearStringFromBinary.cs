@@ -6,7 +6,6 @@ using Microsoft.SqlServer.Server;
 
 public partial class FuzzyDate
 {
-
   [SqlFunction(IsDeterministic = true, IsPrecise = true)]
   public static SqlString YearStringFromBinary(SqlBinary sql_binary)
   {
