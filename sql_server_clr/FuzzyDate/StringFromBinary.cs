@@ -63,7 +63,7 @@ public partial class FuzzyDate
 
         // A fuzzy date with only year part.
         case 0x01 - 1:
-          result = (before_christ ? 1 - year + "BC" : year.ToString());
+          result = before_christ ? 1 - year + "BC" : year.ToString();
           break;
 
         // A fuzzy date spanning multi-years.

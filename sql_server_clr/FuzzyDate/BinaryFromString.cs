@@ -19,7 +19,7 @@ public partial class FuzzyDate
     // Any exception due to invalid input leads to SqlBytes.Null be returned.
     try
     {
-      // Get the input string (w/o whitespaces in lowercase).
+      // Get the input string (w/o whitespaces, in lowercase).
       var input = sql_string.Value.Replace(" ", "").ToLower();
 
       // Initialize the output bytes.
