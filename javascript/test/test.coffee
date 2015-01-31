@@ -73,4 +73,4 @@ describe 'Fuzzy Date Test Suite', ->
         it positive_case[0], ->
           binary = binary_from_string positive_case[0]
           binary.should.be.ok
-          # string_from_binary(binary).should.equal(positive_case[1])
+          string_from_binary(binary).should.equal(positive_case[0])

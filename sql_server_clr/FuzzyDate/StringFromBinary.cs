@@ -26,7 +26,7 @@ public partial class FuzzyDate
     // When the binary does not have a year part:
     if (year == -1024)
     {
-      result = "D-" + month;
+      result = "d-" + month;
       if (day > 0) { result += "-" + day; }
     }
 

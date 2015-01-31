@@ -13,7 +13,7 @@ module.exports = (bytes) ->
 
   # When the binary does not have a year part:
   if year is -1024
-    result = "D-" + month
+    result = "d-" + month
     result += "-" + day if day > 0
 
   # When the binary has a year part:
