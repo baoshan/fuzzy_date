@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.SqlTypes;
+using System.Text.RegularExpressions;
 
 [TestClass]
 public partial class FuzzyDateTest
@@ -67,7 +68,9 @@ public partial class FuzzyDateTest
         {"?c.2014", "? c. 2014"},
         {"c.2014", "c. 2014"},
         {"2014", "2014"},
-        {"2014-8", "August 2014"},
+        {"2014-7", "July 2014"},
+        {"2014-08", "August 2014"},
+        {"2014-08-01", "August 1, 2014"},
         {"2014-8-6", "August 6, 2014"},
         {"2014+1", "2014 – 2015"},
         {"2020s+20", "2020s – 2040s"},
@@ -78,7 +81,7 @@ public partial class FuzzyDateTest
     {
       var valid_binary = FuzzyDate.BinaryFromString(positive_examples[i, 0]);
       Assert.IsFalse(valid_binary.IsNull);
-      Assert.AreEqual(positive_examples[i, 0], FuzzyDate.StringFromBinary(valid_binary));
+      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), FuzzyDate.StringFromBinary(valid_binary));
       Assert.AreEqual(positive_examples[i, 1], FuzzyDate.ReadableStringFromBinary(valid_binary));
       if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
       prev_valid_binary = valid_binary;
@@ -114,7 +117,9 @@ public partial class FuzzyDateTest
         {"?c.2014", "c. 2014 ?"},
         {"c.2014", "c. 2014"},
         {"2014", "2014"},
-        {"2014-8", "2014"},
+        {"2014-7", "2014"},
+        {"2014-08", "2014"},
+        {"2014-08-01", "2014"},
         {"2014-8-6", "2014"},
         {"2014+1", "2014 – 2015"},
         {"2020s+20", "2020s – 2040s"},
@@ -125,7 +130,7 @@ public partial class FuzzyDateTest
     {
       var valid_binary = FuzzyDate.BinaryFromString(positive_examples[i, 0]);
       Assert.IsFalse(valid_binary.IsNull);
-      Assert.AreEqual(positive_examples[i, 0], FuzzyDate.StringFromBinary(valid_binary));
+      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), FuzzyDate.StringFromBinary(valid_binary));
       Assert.AreEqual(positive_examples[i, 1], FuzzyDate.YearStringFromBinary(valid_binary));
       if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
       prev_valid_binary = valid_binary;

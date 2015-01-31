@@ -6,6 +6,7 @@ public partial class FuzzyDate
 {
   // Compiled static regex to separate digits.
   static readonly Regex regex = new Regex(@"\d+", RegexOptions.Compiled);
+  static readonly Regex removeZeroPrefix = new Regex(@"(\D+)0+(\d*)", RegexOptions.Compiled);
 
   /// <summary>
   /// Parse a short string into a fuzzy date binary.
@@ -21,6 +22,7 @@ public partial class FuzzyDate
     {
       // Get the input string (w/o whitespaces, in lowercase).
       var input = sql_string.Value.Replace(" ", "").ToLower();
+      input = removeZeroPrefix.Replace(input, "$1$2");
 
       // Initialize the output bytes.
       byte[] bytes = { 0, 0, 0 };

@@ -11,7 +11,7 @@ module.exports = (input) ->
   try
 
     # Get the input string (w/o whitespaces, in lowercase).
-    input = input.replace(/\ /g, '').toLowerCase()
+    input = input.replace(/\ /g, '').replace(/\d+/g, (m) -> +m).toLowerCase()
 
     # Initialize the output bytes.
     bytes = new Uint8Array 3

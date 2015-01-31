@@ -61,7 +61,7 @@ describe 'Fuzzy Date Test Suite', ->
       ["?c.2014"    , "? c. 2014"],
       ["c.2014"     , "c. 2014"],
       ["2014"       , "2014"],
-      ["2014-8"     , "August 2014"],
+      ["2014-08"     , "August 2014"],
       ["2014-8-6"   , "August 6, 2014"],
       ["2014+1"     , "2014 – 2015"],
       ["2020s+20"   , "2020s – 2040s"],
@@ -73,4 +73,4 @@ describe 'Fuzzy Date Test Suite', ->
         it positive_case[0], ->
           binary = binary_from_string positive_case[0]
           binary.should.be.ok
-          string_from_binary(binary).should.equal(positive_case[0])
+          string_from_binary(binary).should.equal(positive_case[0].replace(/\d+/g, (m) -> +m))
