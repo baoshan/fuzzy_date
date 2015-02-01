@@ -1,0 +1,28 @@
+{
+  "name": "fuzzy_date",
+  "version": "0.0.4",
+  "description": "A 3-byte data type flexible in modeling date.",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "should": "^4.6.2",
+    "mocha": "^2.1.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baoshan/fuzzy_date.git"
+  },
+  "author": "Baoshan Sheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baoshan/fuzzy_date/issues"
+  },
+  "homepage": "https://github.com/baoshan/fuzzy_date"
+}

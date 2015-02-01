@@ -1,8 +1,6 @@
 should = require 'should'
 
-is_valid_binary = require '../is_valid_binary'
-binary_from_string = require '../binary_from_string'
-string_from_binary = require '../string_from_binary'
+{is_valid_binary, binary_from_string, string_from_binary} = require '../src'
 
 describe 'Fuzzy Date Test Suite', ->
 
@@ -61,7 +59,9 @@ describe 'Fuzzy Date Test Suite', ->
       ["?c.2014"    , "? c. 2014"],
       ["c.2014"     , "c. 2014"],
       ["2014"       , "2014"],
-      ["2014-08"     , "August 2014"],
+      ["2014-7"     , "July 2014"],
+      ["2014-08"    , "August 2014"],
+      ["2014-08-01" , "August 1, 2014"],
       ["2014-8-6"   , "August 6, 2014"],
       ["2014+1"     , "2014 – 2015"],
       ["2020s+20"   , "2020s – 2040s"],
