@@ -93,7 +93,7 @@ module.exports = (input) ->
       return null
 
     # Ensure the output is the same as input.
-    if input.replace('.', '') isnt string_from_binary(bytes).replace(' ', '').replace('.', '').toLowerCase()
+    if input.replace('.', '').replace(/\d+/g, (m) -> +m) isnt string_from_binary(bytes).replace(' ', '').replace('.', '').replace(/\d+/g, (m) -> +m).toLowerCase()
       return null
 
     # Return the parsed binary.

@@ -26,8 +26,8 @@ public partial class FuzzyDate
     // When the binary does not have a year part:
     if (year == -1024)
     {
-      result = "d-" + month;
-      if (day > 0) { result += "-" + day; }
+      result = "d-" + month.ToString("D2");
+      if (day > 0) { result += "-" + day.ToString("D2"); }
     }
 
     // When the binary has a year part:
@@ -73,8 +73,8 @@ public partial class FuzzyDate
 
         // A fuzzy date with a month part.
         default:
-          result = (before_christ ? 1 - year + "BC" : year.ToString()) + "-" + month;
-          if (day > 0) { result += "-" + day; }
+          result = (before_christ ? 1 - year + "BC" : year.ToString()) + "-" + month.ToString("D2");
+          if (day > 0) { result += "-" + day.ToString("D2"); }
           break;
       }
     }

@@ -1,3 +1,7 @@
+z_pad = (number) ->
+  str = '0' + number
+  str.substr str.length - 2
+
 module.exports = (bytes) ->
 
   # NULL in NULL out.
@@ -54,8 +58,8 @@ module.exports = (bytes) ->
 
       # A fuzzy date with a month part.
       else
-        result = (if before_christ then 1 - year + "BC" else "#{year}") + "-" + month
-        if day > 0 then result += "-" + day
+        result = (if before_christ then 1 - year + "BC" else "#{year}") + "-" + z_pad month
+        if day > 0 then result += "-" + z_pad day
 
   # Flag Bit B: Accuracy.
   unless bytes[2] & 0x02 then result =  'c.' + result

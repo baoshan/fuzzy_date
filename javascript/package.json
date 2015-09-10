@@ -1,6 +1,6 @@
 {
   "name": "fuzzy_date",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "A 3-byte data type flexible in modeling date.",
   "main": "lib/index.js",
   "directories": {

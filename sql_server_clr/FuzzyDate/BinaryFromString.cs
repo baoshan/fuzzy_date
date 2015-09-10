@@ -109,7 +109,7 @@ public partial class FuzzyDate
       if (!IsValidBinary(sql_binary)) { return SqlBinary.Null; }
 
       // Ensure the output is the same as input.
-      if (input.Replace(".", "") != StringFromBinary(sql_binary).Value.Replace(" ", "").Replace(".", "").ToLower()) { return SqlBinary.Null; }
+      if (input.Replace(".", "") != removeZeroPrefix.Replace(StringFromBinary(sql_binary).Value.Replace(" ", "").Replace(".", "").ToLower(), "$1$2")) { return SqlBinary.Null; }
 
       // Return the parsed binary.
       return sql_binary;

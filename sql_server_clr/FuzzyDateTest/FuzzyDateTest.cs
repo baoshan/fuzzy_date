@@ -81,7 +81,7 @@ public partial class FuzzyDateTest
     {
       var valid_binary = FuzzyDate.BinaryFromString(positive_examples[i, 0]);
       Assert.IsFalse(valid_binary.IsNull);
-      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), FuzzyDate.StringFromBinary(valid_binary));
+      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), Regex.Replace(FuzzyDate.StringFromBinary(valid_binary).Value, "(\\D+)0+(\\d*)", "$1$2"));
       Assert.AreEqual(positive_examples[i, 1], FuzzyDate.ReadableStringFromBinary(valid_binary));
       if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
       prev_valid_binary = valid_binary;
@@ -130,7 +130,7 @@ public partial class FuzzyDateTest
     {
       var valid_binary = FuzzyDate.BinaryFromString(positive_examples[i, 0]);
       Assert.IsFalse(valid_binary.IsNull);
-      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), FuzzyDate.StringFromBinary(valid_binary));
+      Assert.AreEqual(Regex.Replace(positive_examples[i, 0], "(\\D+)0+(\\d*)", "$1$2"), Regex.Replace(FuzzyDate.StringFromBinary(valid_binary).Value, "(\\D+)0+(\\d*)", "$1$2"));
       Assert.AreEqual(positive_examples[i, 1], FuzzyDate.YearStringFromBinary(valid_binary));
       if (!prev_valid_binary.IsNull) { Assert.IsTrue((valid_binary > prev_valid_binary).Value); }
       prev_valid_binary = valid_binary;
