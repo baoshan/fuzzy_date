@@ -58,6 +58,7 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="en%40us" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,6 +70,7 @@
     <Compile Include="IsValidBinary.cs" />
     <Compile Include="YearStringFromBinary.cs" />
     <Compile Include="YearFromBinary.cs" />
+    <Compile Include="en%40us\Date.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ReadableStringFromBinary.cs" />
