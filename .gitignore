@@ -7,5 +7,4 @@ bin
 obj
 TestResults
 node_modules
-javascript/lib
 javascript/fuzzy_date-*.tgz
